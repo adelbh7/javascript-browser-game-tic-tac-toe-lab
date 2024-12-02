@@ -51,7 +51,7 @@ let player1Wins = 0
 let player2Wins = 0
 let round = 1
 let sqrs
-let undolastPosition
+let undoLastPosition
 let undoTurn
 
 // let sqrDisplay = document.querySelectorAll('.sqr')
@@ -67,7 +67,7 @@ player1Disp.innerText = `X Player 1 = ${player1Wins}`
 player2Disp.innerText = `O Player 2 = ${player2Wins}`
 
 reset.addEventListener('click', () => {
-    //console.log("test1")
+    console.log("Test 1 in sqrs Values")
     round = 1
     playCount = 0
     turn = "X"
@@ -83,16 +83,18 @@ reset.addEventListener('click', () => {
 )
 
 undo.addEventListener('click',() =>{
+
 if(turn!==""){
     turn=undoTurn
-    sqrs[undolastPosition].innerText=""
+    playCount -=1
+    sqrs[undoLastPosition].innerText=""
 }
 else {console.log(msgDisplay.innerText = "Too late to Undo! Play again and Enjoy!")}
 
 })
 
 again.addEventListener('click', () => {
-    //console.log("test2")
+    console.log("test 2 Again click")
     round = 1
     playCount = 0
     turn = "X"
@@ -105,10 +107,14 @@ again.addEventListener('click', () => {
 
 
 if (round === 1 && turn !== "") {
+    console.log("Test3 in body")
     sqrs = document.querySelectorAll('.sqr')
+    console.log(sqrs , "SQRS")
 
     sqrs.forEach((eachSqr) => {
+        console.log("IN FOR EACH FOR SQRS")
         eachSqr.addEventListener('click', (playEvent) => {
+            console.log("Test4 target")
             console.log(playEvent.target.id)
             targetedSqr = playEvent.target.id
         }
@@ -118,12 +124,12 @@ if (round === 1 && turn !== "") {
     const fullBoard = document.querySelector('.board')
 
     fullBoard.addEventListener('click', (playEvent) => {
-
+        console.log("Test5 in play")
         if (sqrs[playEvent.target.id].innerText !== "X" && sqrs[playEvent.target.id].innerText !== "O" && turn !== "") {
             console.log("this" + sqrs[playEvent.target.id])
             //console.log("test3")
             sqrs[playEvent.target.id].innerText = turn
-            undolastPosition=playEvent.target.id
+            undoLastPosition=playEvent.target.id
             undoTurn=turn
             console.log(targetedSqr)
             playCount += 1
